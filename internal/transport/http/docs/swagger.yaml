@@ -1,0 +1,52 @@
+basePath: /api
+host: localhost:8081
+info:
+  contact:
+    name: zeroidentidad
+    url: https://zeroidentidad.github.io/chat
+  description: Este es un servidor api ecommerce de prueba.
+  title: Test Ecommerce RestAPI
+  version: "1.0"
+paths:
+  /api/cart/{userid}/item/{productid}:
+    delete:
+      parameters:
+      - description: ID Usuario
+        in: path
+        name: userid
+        required: true
+        type: string
+      - description: ID Producto
+        in: path
+        name: productid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: Eliminar Producto Carrito
+      tags:
+      - Carts
+  /api/product/{id}:
+    delete:
+      parameters:
+      - description: ID Producto
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: Eliminar Producto
+      tags:
+      - Products
+swagger: "2.0"

@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "907d42f9-7369-48dd-a224-eba337552c86",
+		"name": "tests-ecom-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13605329",
+		"_collection_link": "https://eveningdresses.postman.co/workspace/EveningDresses~56643148-7a70-4100-8e69-fe66cf45d117/collection/13605329-907d42f9-7369-48dd-a224-eba337552c86?action=share&source=collection_link&creator=13605329"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "product/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/product/02ee31fa-07e3-493f-9009-bc1a134a61ed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"product",
+								"02ee31fa-07e3-493f-9009-bc1a134a61ed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/product/7a36b45c-8f55-41bf-a055-9ab6f20387ee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"product",
+								"7a36b45c-8f55-41bf-a055-9ab6f20387ee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products?order&search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/products?order=DESC&search=pC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "DESC"
+								},
+								{
+									"key": "search",
+									"value": "pC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product[id='']",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Teclado gamer\",\n    \"price\": 1500.50,\n    \"imageurl\": \"https://lamercedimportadora.mx/wp-content/uploads/2021/10/KX100-800x800-1.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product[id='02ee31fa-07e3-493f-9009-bc1a134a61ed']",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"02ee31fa-07e3-493f-9009-bc1a134a61ed\",\n    \"name\": \"PC gamer\",\n    \"price\": 9500.99,\n    \"imageurl\": \"https://www.xtremepc.com.mx/cdn/shop/files/51136ca4-14b8-4252-9fee-91a606bdaf65_800x.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "products endpoints"
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "cart/{userid}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cart/abc-123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cart",
+								"abc-123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"userid\": \"abc-123\",\n\"productid\": \"991eead3-d332-45ef-8ee1-d7559993ff64\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cart"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cart/{userid}/item/{productid}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cart/abc-123/item/991eead3-d332-45ef-8ee1-d7559993ff64",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cart",
+								"abc-123",
+								"item",
+								"991eead3-d332-45ef-8ee1-d7559993ff64"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "cart endpoints"
+		}
+	]
+}
