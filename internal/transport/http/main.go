@@ -38,9 +38,9 @@ func NewHandler(service EcommerceService) *Handler {
 	return h
 }
 
-// @title Test ecommerce RestAPI
+// @title Ecommerce RestAPI
 // @version 1.0
-// @description Este es un servidor rest api de prueba.
+// @description This is a test rest api server.
 // @contact.name zeroidentidad
 // @contact.url https://zeroidentidad.github.io/chat
 // @host localhost:8081

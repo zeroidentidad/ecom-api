@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// @Summary Agregar producto al carrito
+// @Summary Add product to cart
 // @Tags Cart
 // @Accept json
 // @Produce json
@@ -38,10 +38,10 @@ func (h *Handler) PostItemCart(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Listar productos en carrito
+// @Summary List products in cart
 // @Tags Cart
 // @Produce json
-// @Param userid path string true "Id usuario"
+// @Param userid path string true "user Id"
 // @Success 200 {array} http.Cart "OK"
 // @Router /api/cart/{userid} [get]
 func (h *Handler) GetItemsCart(w http.ResponseWriter, r *http.Request) {
@@ -66,11 +66,11 @@ func (h *Handler) GetItemsCart(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Eliminar producto en carrito
+// @Summary Delete product in cart
 // @Tags Cart
 // @Produce json
-// @Param userid path string true "Id usuario"
-// @Param productid path string true "Id producto"
+// @Param userid path string true "user Id"
+// @Param productid path string true "product Id"
 // @Success 200 {object} http.message "OK"
 // @Router /api/cart/{userid}/item/{productid} [delete]
 func (h *Handler) DeleteItemCart(w http.ResponseWriter, r *http.Request) {

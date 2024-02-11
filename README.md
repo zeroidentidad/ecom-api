@@ -49,21 +49,21 @@ serve.sh
 **Software tools usage:**
 
 - Go version **1.22** ```go.mod```
-- PostgreSQL **12** free remote intance
-- Swagger CLI & http-swagger **v2**
+- PostgreSQL **12** free remote instance
+- Swagger CLI and http-swagger **v2**
 - Air live reload ```.air.conf``` ```air.sh```
 
 All software was used under a Linux OS distro
 
 ## Usage 
 
-No get dependencies necessary with ```vendor``` included if using same version for local execution. In case of different go sdk version make downgrade to go module version and recreate vendoring deps with ```go mod tidy && go mod vendor```.
+No get dependencies necessary with ```vendor``` included if using same version for local execution. In case of different go sdk version make downgrade to appropriate go module version and recreate vendoring deps with ```go mod tidy && go mod vendor```.
 
 ### How to execute
 
 At root directory:
 
-- **Option 1:** Without build, run ```go run ./cmd/server``` or simply using **.sh** script ```./serve.sh```
+- **Option 1:** Without build, run ```go run ./cmd/server``` or simply use **.sh** script ```./serve.sh```
 
 - **Option 2:** With build, run ```go build -o ./serveapi ./cmd/server```, then run ```./serveapi```
 

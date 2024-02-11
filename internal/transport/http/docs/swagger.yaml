@@ -28,8 +28,8 @@ info:
   contact:
     name: zeroidentidad
     url: https://zeroidentidad.github.io/chat
-  description: Este es un servidor rest api de prueba.
-  title: Test ecommerce RestAPI
+  description: This is a test rest api server.
+  title: Ecommerce RestAPI
   version: "1.0"
 paths:
   /api/cart:
@@ -50,13 +50,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/http.Cart'
-      summary: Agregar producto al carrito
+      summary: Add product to cart
       tags:
       - Cart
   /api/cart/{userid}:
     get:
       parameters:
-      - description: Id usuario
+      - description: user Id
         in: path
         name: userid
         required: true
@@ -70,18 +70,18 @@ paths:
             items:
               $ref: '#/definitions/http.Cart'
             type: array
-      summary: Listar productos en carrito
+      summary: List products in cart
       tags:
       - Cart
   /api/cart/{userid}/item/{productid}:
     delete:
       parameters:
-      - description: Id usuario
+      - description: user Id
         in: path
         name: userid
         required: true
         type: string
-      - description: Id producto
+      - description: product Id
         in: path
         name: productid
         required: true
@@ -93,7 +93,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/http.message'
-      summary: Eliminar producto en carrito
+      summary: Delete product in cart
       tags:
       - Cart
   /api/product:
@@ -114,13 +114,14 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/http.Product'
-      summary: 'Upsert: Agregar/modificar producto si recibe id en body'
+      summary: 'Upsert: Add/modify product depending on whether it receives Id in
+        body'
       tags:
       - Product
   /api/product/{id}:
     delete:
       parameters:
-      - description: Id Producto
+      - description: product Id
         in: path
         name: id
         required: true
@@ -132,12 +133,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/http.message'
-      summary: Eliminar producto
+      summary: Delete product
       tags:
       - Product
     get:
       parameters:
-      - description: Id producto
+      - description: product Id
         in: path
         name: id
         required: true
@@ -149,7 +150,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/http.Product'
-      summary: Obtener un producto
+      summary: Get a product
       tags:
       - Product
   /api/products:
@@ -176,8 +177,8 @@ paths:
             items:
               $ref: '#/definitions/http.Product'
             type: array
-      summary: 'Listar productos con parametros opcionales de: orden por precio y
-        buscar por nombre'
+      summary: 'List products with optional parameters: order by price, and search
+        by name'
       tags:
       - Product
 swagger: "2.0"

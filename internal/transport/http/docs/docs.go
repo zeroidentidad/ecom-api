@@ -29,7 +29,7 @@ const docTemplate = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Agregar producto al carrito",
+                "summary": "Add product to cart",
                 "parameters": [
                     {
                         "description": "Cart data",
@@ -59,11 +59,11 @@ const docTemplate = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Listar productos en carrito",
+                "summary": "List products in cart",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id usuario",
+                        "description": "user Id",
                         "name": "userid",
                         "in": "path",
                         "required": true
@@ -90,18 +90,18 @@ const docTemplate = `{
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Eliminar producto en carrito",
+                "summary": "Delete product in cart",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id usuario",
+                        "description": "user Id",
                         "name": "userid",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id producto",
+                        "description": "product Id",
                         "name": "productid",
                         "in": "path",
                         "required": true
@@ -128,7 +128,7 @@ const docTemplate = `{
                 "tags": [
                     "Product"
                 ],
-                "summary": "Upsert: Agregar/modificar producto si recibe id en body",
+                "summary": "Upsert: Add/modify product depending on whether it receives Id in body",
                 "parameters": [
                     {
                         "description": "Product data",
@@ -158,11 +158,11 @@ const docTemplate = `{
                 "tags": [
                     "Product"
                 ],
-                "summary": "Obtener un producto",
+                "summary": "Get a product",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id producto",
+                        "description": "product Id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -184,11 +184,11 @@ const docTemplate = `{
                 "tags": [
                     "Product"
                 ],
-                "summary": "Eliminar producto",
+                "summary": "Delete product",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id Producto",
+                        "description": "product Id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -212,7 +212,7 @@ const docTemplate = `{
                 "tags": [
                     "Product"
                 ],
-                "summary": "Listar productos con parametros opcionales de: orden por precio y buscar por nombre",
+                "summary": "List products with optional parameters: order by price, and search by name",
                 "parameters": [
                     {
                         "enum": [
@@ -292,8 +292,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "localhost:8081",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "Test ecommerce RestAPI",
-	Description:      "Este es un servidor rest api de prueba.",
+	Title:            "Ecommerce RestAPI",
+	Description:      "This is a test rest api server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

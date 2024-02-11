@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Este es un servidor rest api de prueba.",
-        "title": "Test ecommerce RestAPI",
+        "description": "This is a test rest api server.",
+        "title": "Ecommerce RestAPI",
         "contact": {
             "name": "zeroidentidad",
             "url": "https://zeroidentidad.github.io/chat"
@@ -23,7 +23,7 @@
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Agregar producto al carrito",
+                "summary": "Add product to cart",
                 "parameters": [
                     {
                         "description": "Cart data",
@@ -53,11 +53,11 @@
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Listar productos en carrito",
+                "summary": "List products in cart",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id usuario",
+                        "description": "user Id",
                         "name": "userid",
                         "in": "path",
                         "required": true
@@ -84,18 +84,18 @@
                 "tags": [
                     "Cart"
                 ],
-                "summary": "Eliminar producto en carrito",
+                "summary": "Delete product in cart",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id usuario",
+                        "description": "user Id",
                         "name": "userid",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Id producto",
+                        "description": "product Id",
                         "name": "productid",
                         "in": "path",
                         "required": true
@@ -122,7 +122,7 @@
                 "tags": [
                     "Product"
                 ],
-                "summary": "Upsert: Agregar/modificar producto si recibe id en body",
+                "summary": "Upsert: Add/modify product depending on whether it receives Id in body",
                 "parameters": [
                     {
                         "description": "Product data",
@@ -152,11 +152,11 @@
                 "tags": [
                     "Product"
                 ],
-                "summary": "Obtener un producto",
+                "summary": "Get a product",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id producto",
+                        "description": "product Id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -178,11 +178,11 @@
                 "tags": [
                     "Product"
                 ],
-                "summary": "Eliminar producto",
+                "summary": "Delete product",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Id Producto",
+                        "description": "product Id",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -206,7 +206,7 @@
                 "tags": [
                     "Product"
                 ],
-                "summary": "Listar productos con parametros opcionales de: orden por precio y buscar por nombre",
+                "summary": "List products with optional parameters: order by price, and search by name",
                 "parameters": [
                     {
                         "enum": [

@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// @Summary Upsert: Agregar/modificar producto si recibe id en body
+// @Summary Upsert: Add/modify product depending on whether it receives Id in body
 // @Tags Product
 // @Accept json
 // @Produce json
@@ -38,10 +38,10 @@ func (h *Handler) UpsertProduct(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Obtener un producto
+// @Summary Get a product
 // @Tags Product
 // @Produce json
-// @Param id path string true "Id producto"
+// @Param id path string true "product Id"
 // @Success 200 {object} http.Product "OK"
 // @Router /api/product/{id} [get]
 func (h *Handler) GetProduct(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +66,7 @@ func (h *Handler) GetProduct(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Listar productos con parametros opcionales de: orden por precio y buscar por nombre
+// @Summary List products with optional parameters: order by price, and search by name
 // @Tags Product
 // @Produce json
 // @Param order query string false "order options" Enums(ASC, DESC)
@@ -91,10 +91,10 @@ func (h *Handler) GetProducts(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Eliminar producto
+// @Summary Delete product
 // @Tags Product
 // @Produce json
-// @Param id path string true "Id Producto"
+// @Param id path string true "product Id"
 // @Success 200 {object} http.message "OK"
 // @Router /api/product/{id} [delete]
 func (h *Handler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
