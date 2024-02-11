@@ -91,6 +91,6 @@ An exported postman collection is available in the ```postman/``` directory to t
 
 ## Tutorial
 
-Explanation and demonstration video: https://yt.com/share?whatch=34s
+Explanation and demonstration video: https://youtu.be/nvHW8-JyAzY
 
 Not listed on Youtube only by link available in this repo.
