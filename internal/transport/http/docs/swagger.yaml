@@ -1,22 +1,87 @@
-basePath: /api
+basePath: /
+definitions:
+  http.Cart:
+    properties:
+      productid:
+        type: string
+      userid:
+        type: string
+    type: object
+  http.Product:
+    properties:
+      id:
+        type: string
+      imageurl:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  http.message:
+    properties:
+      message:
+        type: string
+    type: object
 host: localhost:8081
 info:
   contact:
     name: zeroidentidad
     url: https://zeroidentidad.github.io/chat
-  description: Este es un servidor api ecommerce de prueba.
-  title: Test Ecommerce RestAPI
+  description: Este es un servidor rest api de prueba.
+  title: Test ecommerce RestAPI
   version: "1.0"
 paths:
-  /api/cart/{userid}/item/{productid}:
-    delete:
+  /api/cart:
+    post:
+      consumes:
+      - application/json
       parameters:
-      - description: ID Usuario
+      - description: Cart data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.Cart'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.Cart'
+      summary: Agregar producto al carrito
+      tags:
+      - Cart
+  /api/cart/{userid}:
+    get:
+      parameters:
+      - description: Id usuario
         in: path
         name: userid
         required: true
         type: string
-      - description: ID Producto
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.Cart'
+            type: array
+      summary: Listar productos en carrito
+      tags:
+      - Cart
+  /api/cart/{userid}/item/{productid}:
+    delete:
+      parameters:
+      - description: Id usuario
+        in: path
+        name: userid
+        required: true
+        type: string
+      - description: Id producto
         in: path
         name: productid
         required: true
@@ -27,14 +92,35 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
-      summary: Eliminar Producto Carrito
+            $ref: '#/definitions/http.message'
+      summary: Eliminar producto en carrito
       tags:
-      - Carts
+      - Cart
+  /api/product:
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Product data
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/http.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.Product'
+      summary: 'Upsert: Agregar/modificar producto si recibe id en body'
+      tags:
+      - Product
   /api/product/{id}:
     delete:
       parameters:
-      - description: ID Producto
+      - description: Id Producto
         in: path
         name: id
         required: true
@@ -45,8 +131,53 @@ paths:
         "200":
           description: OK
           schema:
-            type: integer
-      summary: Eliminar Producto
+            $ref: '#/definitions/http.message'
+      summary: Eliminar producto
       tags:
-      - Products
+      - Product
+    get:
+      parameters:
+      - description: Id producto
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.Product'
+      summary: Obtener un producto
+      tags:
+      - Product
+  /api/products:
+    get:
+      parameters:
+      - description: order options
+        enum:
+        - ASC
+        - DESC
+        in: query
+        name: order
+        type: string
+      - description: string name
+        example: string
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/http.Product'
+            type: array
+      summary: 'Listar productos con parametros opcionales de: orden por precio y
+        buscar por nombre'
+      tags:
+      - Product
 swagger: "2.0"

@@ -38,13 +38,13 @@ func NewHandler(service EcommerceService) *Handler {
 	return h
 }
 
-// @title Test Ecommerce RestAPI
+// @title Test ecommerce RestAPI
 // @version 1.0
-// @description Este es un servidor api ecommerce de prueba.
+// @description Este es un servidor rest api de prueba.
 // @contact.name zeroidentidad
 // @contact.url https://zeroidentidad.github.io/chat
 // @host localhost:8081
-// @BasePath /api
+// @BasePath /
 func (h *Handler) mapRoutes() {
 	h.Router.HandleFunc(
 		"/",

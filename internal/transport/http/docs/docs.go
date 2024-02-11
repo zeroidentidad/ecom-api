@@ -18,26 +18,90 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/cart": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Agregar producto al carrito",
+                "parameters": [
+                    {
+                        "description": "Cart data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.Cart"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/http.Cart"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cart/{userid}": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cart"
+                ],
+                "summary": "Listar productos en carrito",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id usuario",
+                        "name": "userid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/http.Cart"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/cart/{userid}/item/{productid}": {
             "delete": {
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Carts"
+                    "Cart"
                 ],
-                "summary": "Eliminar Producto Carrito",
+                "summary": "Eliminar producto en carrito",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID Usuario",
+                        "description": "Id usuario",
                         "name": "userid",
                         "in": "path",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "ID Producto",
+                        "description": "Id producto",
                         "name": "productid",
                         "in": "path",
                         "required": true
@@ -47,25 +111,58 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/http.message"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product": {
+            "patch": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Upsert: Agregar/modificar producto si recibe id en body",
+                "parameters": [
+                    {
+                        "description": "Product data",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http.Product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/http.Product"
                         }
                     }
                 }
             }
         },
         "/api/product/{id}": {
-            "delete": {
+            "get": {
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Products"
+                    "Product"
                 ],
-                "summary": "Eliminar Producto",
+                "summary": "Obtener un producto",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "ID Producto",
+                        "description": "Id producto",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -75,9 +172,114 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "integer"
+                            "$ref": "#/definitions/http.Product"
                         }
                     }
+                }
+            },
+            "delete": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Eliminar producto",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id Producto",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/http.message"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Listar productos con parametros opcionales de: orden por precio y buscar por nombre",
+                "parameters": [
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "type": "string",
+                        "description": "order options",
+                        "name": "order",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "string",
+                        "description": "string name",
+                        "name": "search",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/http.Product"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "http.Cart": {
+            "type": "object",
+            "properties": {
+                "productid": {
+                    "type": "string"
+                },
+                "userid": {
+                    "type": "string"
+                }
+            }
+        },
+        "http.Product": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "imageurl": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "http.message": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
                 }
             }
         }
@@ -88,10 +290,10 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:8081",
-	BasePath:         "/api",
+	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "Test Ecommerce RestAPI",
-	Description:      "Este es un servidor api ecommerce de prueba.",
+	Title:            "Test ecommerce RestAPI",
+	Description:      "Este es un servidor rest api de prueba.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

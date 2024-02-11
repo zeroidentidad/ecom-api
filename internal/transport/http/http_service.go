@@ -16,3 +16,25 @@ type EcommerceService interface {
 	GetItemsCart(context.Context, string) ([]ecommerce.Cart, error)
 	DeleteItemCart(context.Context, string, string) error
 }
+
+// representation of cart
+// to generate doc
+type Cart struct {
+	UserId    string `json:"userid"`
+	ProductId string `json:"productid"`
+}
+
+// representation of product
+// to generate doc
+type Product struct {
+	ID       string  `json:"id"`
+	Name     string  `json:"name"`
+	Price    float64 `json:"price"`
+	ImageUrl string  `json:"imageurl"`
+}
+
+// representation of default response
+// to generate doc
+type message struct {
+	Message string `json:"message"`
+}

@@ -10,6 +10,13 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// @Summary Agregar producto al carrito
+// @Tags Cart
+// @Accept json
+// @Produce json
+// @Param request body http.Cart true "Cart data"
+// @Success 200 {object} http.Cart "OK"
+// @Router /api/cart [post]
 func (h *Handler) PostItemCart(w http.ResponseWriter, r *http.Request) {
 	var c ecommerce.Cart
 	if err := json.NewDecoder(r.Body).Decode(&c); err != nil {
@@ -31,6 +38,12 @@ func (h *Handler) PostItemCart(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// @Summary Listar productos en carrito
+// @Tags Cart
+// @Produce json
+// @Param userid path string true "Id usuario"
+// @Success 200 {array} http.Cart "OK"
+// @Router /api/cart/{userid} [get]
 func (h *Handler) GetItemsCart(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	userid := vars["userid"]
@@ -53,12 +66,12 @@ func (h *Handler) GetItemsCart(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// @Summary Eliminar Producto Carrito
-// @Tags Carts
+// @Summary Eliminar producto en carrito
+// @Tags Cart
 // @Produce json
-// @Param userid path string true "ID Usuario"
-// @Param productid path string true "ID Producto"
-// @Success 200 {integer} int "OK"
+// @Param userid path string true "Id usuario"
+// @Param productid path string true "Id producto"
+// @Success 200 {object} http.message "OK"
 // @Router /api/cart/{userid}/item/{productid} [delete]
 func (h *Handler) DeleteItemCart(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -78,7 +91,7 @@ func (h *Handler) DeleteItemCart(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := json.NewEncoder(w).Encode(
-		struct{ message string }{"successfully deleted"},
+		message{Message: "successfully deleted"},
 	); err != nil {
 		log.Println(err)
 		w.WriteHeader(http.StatusInternalServerError)
